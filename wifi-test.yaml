@@ -1,0 +1,15 @@
+esphome:
+  name: wifi-test
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: arduino
+
+wifi:
+  ssid: "wyfsxm-2G"
+  password: "036613470511SXM?"
+  fast_connect: true
+
+logger:
+  level: DEBUG
