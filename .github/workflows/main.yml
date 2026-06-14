@@ -15,8 +15,18 @@ jobs:
         run: pip install esphome
       - name: Compile
         run: esphome compile shidu.yaml
-      - name: Upload entire build directory
+      - name: Find and upload firmware
+        run: |
+          # 查找所有 .bin 文件并输出路径
+          find . -name "*.bin" -type f > bin_files.txt
+          cat bin_files.txt
+          # 如果找到文件，将其移动到统一目录
+          mkdir -p firmware
+          while read -r file; do
+            cp "$file" firmware/
+          done < bin_files.txt
+      - name: Upload firmware artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-dir
-          path: .esphome/build/
+          name: firmware
+          path: firmware/
