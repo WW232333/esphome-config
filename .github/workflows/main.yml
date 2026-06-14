@@ -15,8 +15,8 @@ jobs:
         run: pip install esphome
       - name: Compile
         run: esphome compile shidu.yaml
-      - name: Upload
+      - name: Upload entire build directory
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
-          path: .esphome/build/**/firmware.bin
+          name: build-dir
+          path: .esphome/build/
